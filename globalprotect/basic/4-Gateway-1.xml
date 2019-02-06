@@ -17,8 +17,6 @@
             <os>Any</os>
             <authentication-profile>GP_Local_Users</authentication-profile>
             <authentication-message>Enter login credentials</authentication-message>
-            <username-label>Username</username-label>
-            <password-label>Password</password-label>
         </entry>
     </client-auth>
     <remote-user-tunnel-configs>
