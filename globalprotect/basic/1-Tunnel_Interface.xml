@@ -1,0 +1,9 @@
+<tunnel>
+    <units>
+        <entry name="{{ tunnel_name }}">
+            <ip>
+                <entry name="{{ tunnel_ip_address }}"/>
+            </ip>
+        </entry>
+    </units>
+</tunnel>

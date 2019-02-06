@@ -1,0 +1,101 @@
+# snippets_panos is used to load a basic GlobalProtect configuration
+# snippet folder name
+
+name: Basic_GP_Configuration_v8.0
+
+# label used for menu selection
+label: v8.0 Iron-Skillet for NGFW GlobalProtect
+description: Iron-Skillet Basic GlobalProtect Configuration
+dependency:
+
+# type of device configuration
+type: panos
+# panos or panorama or panorama_gpcs
+
+# grouping of like snippets for dynamic menu creation in pan-cnc
+labels:
+  service_type: globalprotect
+
+# variables used in the configuration templates
+# type_hint defines the form field type in pan-cnc
+
+variables:
+  - name: tunnel_name
+    description: Tunnel Interface - tunnel interface name
+    default: tunnel.100
+    type_hint: text
+  - name: tunnel_ip_address
+    description: Tunnel Interface -  Interface IP address
+    default: 10.10.10.1
+    type_hint: ip_address
+# Gateway-1
+  - name: agent_ip_pool
+    description: Gateway-1 - pool of IPs given to agents
+    default: 10.10.10.10-10.10.10.100
+    type_hint: text
+  - name: ssl-tls_service_profile
+    description: Gateway-1 - SSL TLS Service Profile
+    default: GP-ssl-service-profile
+    type_hint: text
+# Portal-1
+# need a new variable name unique from the gateway profile above
+#  - name: ssl-tls_service_profile
+#    description: Portal-1 - SSL TLS Service Profile
+#    default: GP-ssl-service-profile
+#    type_hint: text
+  - name: portal_ip_address_netmask
+    description: Portal-1 - IP address and Netmask
+    default: 192.168.55.20/24
+    type_hint: ip_address
+  - name: external_gateway_ip_address
+    description: Portal-1 - IP address of the external gateway
+    default: 192.168.55.20
+    type_hint: ip_address
+  - name: trusted_CA
+    description: Portal-1 - Trusted certificate of authority
+    default: GP_Root_CA
+    type_hint: text
+
+# -name: ssl-tls_service_profile
+#     description:  Gateway-1 - SSL TLS Service Profile  
+#     default:  Name of the pre-defined SSL TSL Service Profile
+#     type_hint:  dropdown  
+#     dd_list: 
+#      -  key:  dhcp-client  
+#         value:  dhcp-client  
+#      -  key:  static  
+#         value:  static
+# -  name:  GP_VR  
+#    description:  Add Tunnel.100 interface to Virtual Router  
+#    default:  192.0.2.6  
+#    type_hint:  ip_address  
+
+# snippets used for api configuration including xpath and element as file name  
+# files will load in the order listed
+# Tunnel Interface  
+
+ snippets:
+# Tunnel Interface 
+   -  name: tunnel_interfafce
+      xpath: /config/devices/entry[@name='localhost.localdomain']/network/interface  
+      file: 1-Tunnel_Interface.xml
+# Local Test User Database
+   -  name: Test user database
+      xpath: /config/mgt-config/users
+      file: 2-Local_Test_User_Database.xml
+# Local Test User Authentication Profile
+   -  name: Test user database
+      xpath: /config/mgt-config/users
+      file: 3-Local_Test_User_Authentication_Profile.xml
+# Gateway-1  
+   -  name: gateway-1_configuration
+      xpath: /config/devices/entry[@name='localhost.localdomain']/global-protect/global-protect-gateway
+      file: 4-Gateway-1.xml
+# Portal-1  
+   -  name: portal-1_configuration
+      xpath: /config/devices/entry[@name='localhost.localdomain']/global-protect/global-protect-portal
+      file: 5-Portal-1.xml
+# Virtual Router
+   -  name: virtual_router_upate
+      xpath: /config/devices/entry[@name='localhost.localdomain']/network/virtual-router
+      file: 6-Modify_Virtual_Router.xml
