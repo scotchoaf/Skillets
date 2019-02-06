@@ -85,15 +85,15 @@ snippets:
       file: 2-Local_Test_User_Database.xml
 # Local Test User Authentication Profile
    -  name: Test user database
-      xpath: /config/mgt-config/users
+      xpath: /config/shared/authentication-profile
       file: 3-Local_Test_User_Authentication_Profile.xml
 # Gateway-1  
    -  name: gateway-1_configuration
-      xpath: /config/devices/entry[@name='localhost.localdomain']/global-protect/global-protect-gateway
+      xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/global-protect/global-protect-gateway
       file: 4-Gateway-1.xml
 # Portal-1  
    -  name: portal-1_configuration
-      xpath: /config/devices/entry[@name='localhost.localdomain']/global-protect/global-protect-portal
+      xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/global-protect/global-protect-portal
       file: 5-Portal-1.xml
 # Virtual Router
    -  name: virtual_router_upate
