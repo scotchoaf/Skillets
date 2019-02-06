@@ -22,16 +22,8 @@
     <remote-user-tunnel-configs>
         <entry name="Default_Client_Settings">
             <split-tunneling>
-                <include-domains>
-                    <list/>
-                </include-domains>
-                <exclude-domains>
-                    <list/>
-                </exclude-domains>
                 <access-route/>
                 <exclude-access-route/>
-                <include-applications/>
-                <exclude-applications/>
             </split-tunneling>
             <authentication-override>
                 <generate-cookie>no</generate-cookie>
