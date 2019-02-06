@@ -1,7 +1,7 @@
 # snippets_panos is used to load a basic GlobalProtect configuration
 # snippet folder name
 
-name: Basic_GP_Configuration_v8.0
+name: Basic_GP_Configuration_v80
 
 # label used for menu selection
 label: v8.0 Iron-Skillet for NGFW GlobalProtect
