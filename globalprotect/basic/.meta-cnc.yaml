@@ -33,9 +33,9 @@ variables:
     description: Gateway-1 - pool of IPs given to agents
     default: 10.10.10.10-10.10.10.100
     type_hint: text
-  - name: ssl-tls_service_profile
+  - name: ssl_tls_service_profile
     description: Gateway-1 - SSL TLS Service Profile
-    default: GP-ssl-service-profile
+    default: GP_ssl_service_profile
     type_hint: text
 # Portal-1
 # need a new variable name unique from the gateway profile above

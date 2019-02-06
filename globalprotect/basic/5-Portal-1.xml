@@ -8,7 +8,7 @@
         </local-address>
         <custom-login-page>factory-default</custom-login-page>
         <custom-home-page>factory-default</custom-home-page>
-        <ssl-tls-service-profile>{{ ssl-tls_service_profile }}</ssl-tls-service-profile>
+        <ssl-tls-service-profile>{{ ssl_tls_service_profile }}</ssl-tls-service-profile>
     </portal-config>
     <client-config>
         <configs>
