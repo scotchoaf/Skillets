@@ -81,7 +81,7 @@ snippets:
       file: 1-Tunnel_Interface.xml
 # Local Test User Database
    -  name: Test user database
-      xpath: /config/mgt-config/users
+      xpath: /config/shared/local-user-database
       file: 2-Local_Test_User_Database.xml
 # Local Test User Authentication Profile
    -  name: Test user database
