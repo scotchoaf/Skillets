@@ -74,7 +74,7 @@ variables:
 # files will load in the order listed
 # Tunnel Interface  
 
- snippets:
+snippets:
 # Tunnel Interface 
    -  name: tunnel_interfafce
       xpath: /config/devices/entry[@name='localhost.localdomain']/network/interface  
