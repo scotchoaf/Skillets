@@ -28,6 +28,10 @@ variables:
     description: Tunnel Interface -  Interface IP address
     default: 10.10.10.1
     type_hint: ip_address
+  - name: gp_vr
+    description: virtual router used for GP tunnel interface
+    default: GP_VR
+    type_hint: text
 # Gateway-1
   - name: agent_ip_pool
     description: Gateway-1 - pool of IPs given to agents
@@ -82,6 +86,10 @@ snippets:
    -  name: tunnel_interfafce
       xpath: /config/devices/entry[@name='localhost.localdomain']/network/interface  
       file: 1-Tunnel_Interface.xml
+# Virtual Router
+   -  name: virtual_router_upate
+      xpath: /config/devices/entry[@name='localhost.localdomain']/network/virtual-router
+      file: 6-Modify_Virtual_Router.xml
 # Local Test User Database
    -  name: Test user database
       xpath: /config/shared/local-user-database
@@ -98,7 +106,4 @@ snippets:
    -  name: portal-1_configuration
       xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/global-protect/global-protect-portal
       file: 5-Portal-1.xml
-# Virtual Router
-   -  name: virtual_router_upate
-      xpath: /config/devices/entry[@name='localhost.localdomain']/network/virtual-router
-      file: 6-Modify_Virtual_Router.xml
+

@@ -1,4 +1,4 @@
-<entry name="GP_VR">
+<entry name="{{ gp_vr }}">
     <ecmp>
         <algorithm>
             <ip-modulo/>
