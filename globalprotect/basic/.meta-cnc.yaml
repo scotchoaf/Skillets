@@ -75,7 +75,10 @@ variables:
 # Tunnel Interface  
 
 snippets:
-# Tunnel Interface 
+# Tunnel Interface
+   -  name: ssl_tls_profile
+      xpath: /config/shared/ssl-tls-service-profile
+      file: 0-ssl_tls_profile.xml
    -  name: tunnel_interfafce
       xpath: /config/devices/entry[@name='localhost.localdomain']/network/interface  
       file: 1-Tunnel_Interface.xml
