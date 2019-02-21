@@ -114,5 +114,5 @@ snippets:
 # Tunnel Interface zone
     - name: tunnel_interface_zone
       xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/zone
-      file: 1a-Tunnel_Interface.xml
+      file: 1a-Tunnel_Interface_zone.xml
 
