@@ -18,6 +18,6 @@
               <ip/>
             </local-address>
             <ip-pool/>
-            <tunnel-interface>tunnel.100</tunnel-interface>
+            <tunnel-interface>{{ tunnel_name }}</tunnel-interface>
           </entry>
 
