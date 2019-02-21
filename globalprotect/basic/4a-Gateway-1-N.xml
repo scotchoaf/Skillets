@@ -1,16 +1,12 @@
  <entry name="Gateway-1-N">
             <client>
-              <exclude-video-traffic>
-                <applications/>
-                <enabled>no</enabled>
-              </exclude-video-traffic>
               <dns-server>
                 <primary>8.8.8.8</primary>
               </dns-server>
             </client>
             <ipsec>
               <third-party-client>
-                <enable>no</enable>
+                <enable>yes</enable>
               </third-party-client>
             </ipsec>
             <local-address>
