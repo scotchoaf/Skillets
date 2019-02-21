@@ -3,5 +3,5 @@
     <min-version>tls1-0</min-version>
     <max-version>max</max-version>
   </protocol-settings>
-  <certificate >{{ trusted_CA }}</certificate>
+  <certificate >{{ Server_certificate }}</certificate>
 </entry>
