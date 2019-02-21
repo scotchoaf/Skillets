@@ -87,11 +87,11 @@ snippets:
    -  name: ssl_tls_profile
       xpath: /config/shared/ssl-tls-service-profile
       file: 0-ssl_tls_profile.xml
- # Tunnel Interface
+# Tunnel Interface
    -  name: tunnel_interface
       xpath: /config/devices/entry[@name='localhost.localdomain']/network/interface  
       file: 1-Tunnel_Interface.xml
-  # Tunnel Interface zone
+# Tunnel Interface zone
     - name: tunnel_interface
       xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1'])
       file: 1a-Tunnel_Interface.xml
