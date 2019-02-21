@@ -57,7 +57,7 @@ variables:
     type_hint: ip_address
   - name: external_gateway_ip_address
     description: Gateway-1 - IP address of the external gateway
-    default: 192.168.55.20/24
+    default: 192.168.55.20
     type_hint: ip_address
   - name: trusted_CA
     description: Portal-1 - Trusted certificate of authority
