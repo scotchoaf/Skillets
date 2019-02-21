@@ -1,18 +1,5 @@
 
 <entry name="Gateway-1">
-          <roles>
-            <entry name="default">
-              <login-lifetime>
-                <days>30</days>
-              </login-lifetime>
-              <inactivity-logout>
-                <hours>3</hours>
-              </inactivity-logout>
-              <disconnect-on-idle>
-                <minutes>180</minutes>
-              </disconnect-on-idle>
-            </entry>
-          </roles>
           <client-auth>
             <entry name="default">
               <os>Any</os>
