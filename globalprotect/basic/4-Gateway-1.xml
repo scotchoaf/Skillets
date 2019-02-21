@@ -57,5 +57,5 @@
           </remote-user-tunnel-configs>
           <ssl-tls-service-profile>ssl-tls-service-profile</ssl-tls-service-profile>
           <tunnel-mode>yes</tunnel-mode>
-          <remote-user-tunnel>{{ tunnel_name }}</remote-user-tunnel>
+          <remote-user-tunnel>tunnel.100</remote-user-tunnel>
 </entry>
