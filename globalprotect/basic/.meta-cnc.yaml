@@ -91,10 +91,6 @@ snippets:
     - name: tunnel_interface
       xpath: /config/devices/entry[@name='localhost.localdomain']/network/interface  
       file: 1-Tunnel_Interface.xml
-# Tunnel Interface zone
-    - name: tunnel_interface_zone
-      xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/zone
-      file: 1a-Tunnel_Interface.xml
 # Virtual Router
     - name: virtual_router_upate
       xpath: /config/devices/entry[@name='localhost.localdomain']/network/virtual-router
@@ -115,4 +111,8 @@ snippets:
     - name: portal-1_configuration
       xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/global-protect/global-protect-portal
       file: 5-Portal-1.xml
+# Tunnel Interface zone
+    - name: tunnel_interface_zone
+      xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/zone
+      file: 1a-Tunnel_Interface.xml
 
