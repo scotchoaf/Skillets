@@ -1,5 +1,18 @@
 
 <entry name="Gateway-1">
+          <roles>
+            <entry name="default">
+              <login-lifetime>
+                <days>30</days>
+              </login-lifetime>
+              <inactivity-logout>
+                <hours>3</hours>
+              </inactivity-logout>
+              <disconnect-on-idle>
+                <minutes>180</minutes>
+              </disconnect-on-idle>
+            </entry>
+          </roles>
           <client-auth>
             <entry name="default">
               <os>Any</os>
@@ -10,7 +23,7 @@
             </entry>
           </client-auth>
           <remote-user-tunnel-configs>
-            <entry name="default_config">
+            <entry name="default">
               <split-tunneling>
                 <include-domains>
                   <list/>
@@ -33,7 +46,7 @@
               </source-user>
               <authentication-server-ip-pool/>
               <ip-pool>
-                <member>{{ agent_ip_pool }}</member>
+                <member>10.10.10.2-10.10.10.100</member>
               </ip-pool>
               <os>
                 <member>any</member>
@@ -45,6 +58,4 @@
           <ssl-tls-service-profile>ssl-tls-service-profile</ssl-tls-service-profile>
           <tunnel-mode>yes</tunnel-mode>
           <remote-user-tunnel>tunnel.100</remote-user-tunnel>
-</entry>
-
-
+        </entry>
