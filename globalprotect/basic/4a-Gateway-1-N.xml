@@ -1,10 +1,12 @@
- <global-protect-gateway>
-          <entry name="Gateway-1-N">
+ <entry name="Gateway-1-N">
             <client>
               <exclude-video-traffic>
                 <applications/>
                 <enabled>no</enabled>
               </exclude-video-traffic>
+              <dns-server>
+                <primary>8.8.8.8</primary>
+              </dns-server>
             </client>
             <ipsec>
               <third-party-client>
@@ -16,6 +18,6 @@
               <ip/>
             </local-address>
             <ip-pool/>
-            <tunnel-interface>{{ tunnel_name }}</tunnel-interface>
+            <tunnel-interface>tunnel.100</tunnel-interface>
           </entry>
-        </global-protect-gateway>
+
