@@ -1,0 +1,9 @@
+<zone>
+      <entry name="GP_zone">
+        <network>
+          <layer3>
+            <member>"{{ tunnel_name }}"</member>
+          </layer3>
+        </network>
+      </entry>
+    </zone>
