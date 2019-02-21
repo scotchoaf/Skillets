@@ -84,7 +84,7 @@ variables:
 
 snippets:
 # Profile relating to the certs
-   -  name: ssl_tls_profile
+   - name: ssl_tls_profile
       xpath: /config/shared/ssl-tls-service-profile
       file: 0-ssl_tls_profile.xml
 # Tunnel Interface
@@ -100,19 +100,19 @@ snippets:
       xpath: /config/devices/entry[@name='localhost.localdomain']/network/virtual-router
       file: 6-Modify_Virtual_Router.xml
 # Local Test User Database
-   -  name: Test user database
+    - name: Test user database
       xpath: /config/shared/local-user-database
       file: 2-Local_Test_User_Database.xml
 # Local Test User Authentication Profile
-   -  name: Test user database
+    - name: Test user database
       xpath: /config/shared/authentication-profile
       file: 3-Local_Test_User_Authentication_Profile.xml
 # Gateway-1  
-   -  name: gateway-1_configuration
+    - name: gateway-1_configuration
       xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/global-protect/global-protect-gateway
       file: 4-Gateway-1.xml
 # Portal-1  
-   -  name: portal-1_configuration
+    - name: portal-1_configuration
       xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/global-protect/global-protect-portal
       file: 5-Portal-1.xml
 
