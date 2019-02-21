@@ -85,7 +85,7 @@ variables:
 snippets:
 # Profile relating to the certs
     - name: ssl_tls_profile
-      xpath: /config/shared/ssl-tls-service-profilegit status
+      xpath: /config/shared/ssl-tls-service-profile
 
       file: 0-ssl_tls_profile.xml
 # Tunnel Interface
