@@ -107,6 +107,10 @@ snippets:
     - name: gateway-1_configuration
       xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/global-protect/global-protect-gateway
       file: 4-Gateway-1.xml
+# Gateway-1-N
+    - name: gateway-1_configuration
+      xpath: /config/devices/entry[@name='localhost.localdomain']/network/virtual-router
+      file: 4-Gateway-1.xml
 # Portal-1  
     - name: portal-1_configuration
       xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/global-protect/global-protect-portal

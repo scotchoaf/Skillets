@@ -1,0 +1,21 @@
+ <global-protect-gateway>
+          <entry name="Gateway-1-N">
+            <client>
+              <exclude-video-traffic>
+                <applications/>
+                <enabled>no</enabled>
+              </exclude-video-traffic>
+            </client>
+            <ipsec>
+              <third-party-client>
+                <enable>no</enable>
+              </third-party-client>
+            </ipsec>
+            <local-address>
+              <interface>ethernet1/1</interface>
+              <ip/>
+            </local-address>
+            <ip-pool/>
+            <tunnel-interface>{{ tunnel_name }}</tunnel-interface>
+          </entry>
+        </global-protect-gateway>
