@@ -46,7 +46,7 @@
               </source-user>
               <authentication-server-ip-pool/>
               <ip-pool>
-                <member>10.10.10.2-10.10.10.100</member>
+                <member>{ agent_ip_pool }}</member>
               </ip-pool>
               <os>
                 <member>any</member>
