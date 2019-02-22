@@ -106,7 +106,7 @@ snippets:
 # vsys-import
     - name: vsys_imports
       xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/import
-      file: 4a-vsys-imports.xml
+      file: 3a-vsys-imports.xml
 # Gateway-1  
     - name: gateway-1_configuration
       xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/global-protect/global-protect-gateway
