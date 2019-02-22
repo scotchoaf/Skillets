@@ -1,19 +1,23 @@
- <entry name="default">
+ <entry name="Gateway-1-N">
+            <local-address>
+              <ip>
+                <ipv4>192.168.55.20/24</ipv4>
+              </ip>
+              <interface>ethernet1/1</interface>
+            </local-address>
             <client>
-              <dns-server>
-                <primary>8.8.8.8</primary>
-              </dns-server>
+              <exclude-video-traffic>
+                <applications/>
+                <enabled>no</enabled>
+              </exclude-video-traffic>
             </client>
             <ipsec>
               <third-party-client>
-                <enable>yes</enable>
+                <enable>no</enable>
               </third-party-client>
             </ipsec>
-            <local-address>
-              <interface>ethernet1/1</interface>
-              <ip/>
-            </local-address>
             <ip-pool/>
             <tunnel-interface>tunnel.100</tunnel-interface>
           </entry>
+
 
