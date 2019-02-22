@@ -1,4 +1,4 @@
- <entry name="Gateway-1-N">
+ <entry name="default">
             <client>
               <dns-server>
                 <primary>8.8.8.8</primary>
