@@ -17,7 +17,7 @@
               </third-party-client>
             </ipsec>
             <ip-pool/>
-            <tunnel-interface>{{ tunnel.100 }}</tunnel-interface>
-          </entry>
+            <tunnel-interface>tunnel.100</tunnel-interface>
+ </entry>
 
 
