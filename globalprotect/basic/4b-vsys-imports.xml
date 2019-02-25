@@ -1,7 +1,5 @@
-<import>
-      <network>
-        <interface>
-          <member>{{ tunnel_name }}</member>
-        </interface>
-      </network>
-</import>
+ <network>
+  <interface>
+    <member>{{ tunnel_name }}</member>
+  </interface>
+</network>
