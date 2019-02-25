@@ -99,10 +99,6 @@ snippets:
     - name: virtual_router_upate
       xpath: /config/devices/entry[@name='localhost.localdomain']/network/virtual-router
       file: 2-Modify_Virtual_Router.xml
-# vsys-import
-#    - name: vsys_imports
-#      xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/import
-#      file: 3-vsys-imports.xml
 # Tunnel Interface zone
     - name: tunnel_interface_zone
       xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/zone
