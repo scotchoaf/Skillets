@@ -100,9 +100,9 @@ snippets:
       xpath: /config/devices/entry[@name='localhost.localdomain']/network/virtual-router
       file: 2-Modify_Virtual_Router.xml
 # vsys-import
-    - name: vsys_imports
-      xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/import
-      file: 3-vsys-imports.xml
+#    - name: vsys_imports
+#      xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/import
+#      file: 3-vsys-imports.xml
 # Tunnel Interface zone
     - name: tunnel_interface_zone
       xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/zone
@@ -118,7 +118,7 @@ snippets:
 # Gateway-1  
     - name: gateway-1_configuration
       xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/global-protect/global-protect-gateway
-      file: 7-Gateway-1.xml
+      file: 7a-Gateway-1.xml
 # Gateway-1-N
     - name: gateway-1-N_configuration
       xpath: /config/devices/entry[@name='localhost.localdomain']/network/tunnel/global-protect-gateway
