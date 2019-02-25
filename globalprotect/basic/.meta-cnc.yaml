@@ -33,7 +33,7 @@ variables:
     default: 10.10.10.1
     type_hint: ip_address
   - name: gp_vr
-    description: virtual router used for GP tunnel interface
+    description: Virtual Router used for GP tunnel interface
     default: default
     type_hint: text
 # Gateway-1
@@ -58,19 +58,19 @@ variables:
     default: GP_Root_CA
     type_hint: text
   - name: gateway_name
-    description: reference name for the GP gateway
+    description: Reference name for the GP gateway
     default: Gateway-1
     type_hint: text
   - name: gateway_intf
-    description: interface mapped to the GP gateway
+    description: Interface mapped to the GP gateway
     default: ethernet1/1
     type_hint: text
   - name: gateway_ip
-    description: ip address mapped to the GP gateway
+    description: IP address mapped to the GP gateway
     default: 192.168.55.20/24
     type_hint: text
   - name: user_ip_pool
-    description: ip pool assigned to GP users
+    description: IP pool assigned to GP users
     default: 10.10.10.2-10.10.10.100
     type_hint: text
   - name: tunnel_zone
@@ -78,11 +78,11 @@ variables:
     default: untrust
     type_hint: text
   - name: portal_name
-    description: named used for the GP portal
+    description: Reference name for the GP portal
     default: Portal-1
     type_hint: text
   - name: portal_intf
-    description: interface used for the GP portal
+    description: Interface mapped to the GP portal
     default: ethernet1/1
     type_hint: text
 
