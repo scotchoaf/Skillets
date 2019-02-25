@@ -1,4 +1,4 @@
-<entry name="untrust">
+<entry name="{{ tunnel_zone }}">
         <network>
           <layer3>
             <member>"{{ tunnel_name }}"</member>

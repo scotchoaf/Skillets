@@ -63,24 +63,22 @@ variables:
     description: Portal-1 - Trusted certificate of authority
     default: GP_Root_CA
     type_hint: text
-
-# -name: ssl-tls_service_profile
-#     description:  Gateway-1 - SSL TLS Service Profile  
-#     default:  Name of the pre-defined SSL TSL Service Profile
-#     type_hint:  dropdown  
-#     dd_list: 
-#      -  key:  dhcp-client  
-#         value:  dhcp-client  
-#      -  key:  static  
-#         value:  static
-# -  name:  GP_VR  
-#    description:  Add Tunnel.100 interface to Virtual Router  
-#    default:  192.0.2.6  
-#    type_hint:  ip_address  
-
-# snippets used for api configuration including xpath and element as file name  
-# files will load in the order listed
-# Tunnel Interface  
+  - name: gateway_name
+    description: reference name for the GP gateway
+    default: Gateway-1
+    type_hint: text
+  - name: gateway_intf
+    description: interface mapped to the GP gateway
+    default: ethernet1/1
+    type_hint: text
+  - name: gateway_intf
+    description: interface mapped to the GP gateway
+    default: ethernet1/1
+    type_hint: text
+  - name: user_ip_pool
+    description: ip pool assigned to GP users
+    default: 10.10.10.2-10.10.10.100
+    type_hint: text
 
 snippets:
 # Profile relating to the certs
@@ -96,13 +94,13 @@ snippets:
       xpath: /config/devices/entry[@name='localhost.localdomain']/network/virtual-router
       file: 6-Modify_Virtual_Router.xml
 # vsys-import
-#    - name: vsys_imports
-#      xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/import
-#      file: 4b-vsys-imports.xml
+    - name: vsys_imports
+      xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/import
+      file: 4b-vsys-imports.xml
 # Tunnel Interface zone
-#    - name: tunnel_interface_zone
-#      xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/zone
-#      file: 7-Tunnel_Interface_zone.xml
+    - name: tunnel_interface_zone
+      xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/zone
+      file: 7-Tunnel_Interface_zone.xml
 # Local Test User Database
     - name: Test user database
       xpath: /config/shared/local-user-database

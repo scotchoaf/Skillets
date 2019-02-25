@@ -1,23 +1,23 @@
- <entry name="Gateway-1-N">
-            <local-address>
-              <ip>
-                <ipv4>192.168.55.20/24</ipv4>
-              </ip>
-              <interface>ethernet1/1</interface>
-            </local-address>
-            <client>
-              <exclude-video-traffic>
-                <applications/>
-                <enabled>no</enabled>
-              </exclude-video-traffic>
-            </client>
-            <ipsec>
-              <third-party-client>
-                <enable>no</enable>
-              </third-party-client>
-            </ipsec>
-            <ip-pool/>
-            <tunnel-interface>{{ tunnel.100 }}</tunnel-interface>
-          </entry>
+ <entry name="{{ gateway_name }}-N">
+  <local-address>
+    <ip>
+      <ipv4>{{ gateway_ip }}</ipv4>
+    </ip>
+    <interface>{{ gateway_intf }}</interface>
+  </local-address>
+  <client>
+    <exclude-video-traffic>
+      <applications/>
+      <enabled>no</enabled>
+    </exclude-video-traffic>
+  </client>
+  <ipsec>
+    <third-party-client>
+      <enable>no</enable>
+    </third-party-client>
+  </ipsec>
+  <ip-pool/>
+  <tunnel-interface>{{ tunnel_name }}</tunnel-interface>
+</entry>
 
 

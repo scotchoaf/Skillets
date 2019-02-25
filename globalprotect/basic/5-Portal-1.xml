@@ -1,10 +1,10 @@
-<entry name="Portal-1">
+<entry name="{{ portal_name }}">
     <portal-config>
         <local-address>
             <ip>
                 <ipv4>{{ portal_ip_address_netmask }}</ipv4>
             </ip>
-            <interface>ethernet1/1</interface>
+            <interface>{{ portal_intf }}</interface>
         </local-address>
         <custom-login-page>factory-default</custom-login-page>
         <custom-home-page>factory-default</custom-home-page>
@@ -20,7 +20,7 @@
                 <gateways>
                     <external>
                         <list>
-                            <entry name="Gateway-1">
+                            <entry name="{{ gateway_name }}">
                                 <ip>
                                     <ipv4>{{ external_gateway_ip_address }}</ipv4>
                                 </ip>

@@ -1,5 +1,5 @@
 
-<entry name="Gateway-1">
+<entry name="{{ gateway_name }}">
           <roles>
             <entry name="default">
               <login-lifetime>
@@ -46,7 +46,7 @@
               </source-user>
               <authentication-server-ip-pool/>
               <ip-pool>
-                <member>10.10.10.2-10.10.10.100</member>
+                <member>{{ user_ip_pool }}</member>
               </ip-pool>
               <os>
                 <member>any</member>
