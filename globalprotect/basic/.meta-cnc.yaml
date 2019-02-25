@@ -71,9 +71,9 @@ variables:
     description: interface mapped to the GP gateway
     default: ethernet1/1
     type_hint: text
-  - name: gateway_intf
-    description: interface mapped to the GP gateway
-    default: ethernet1/1
+  - name: gateway_ip
+    description: ip address mapped to the GP gateway
+    default: 192.168.55.20/24
     type_hint: text
   - name: user_ip_pool
     description: ip pool assigned to GP users
