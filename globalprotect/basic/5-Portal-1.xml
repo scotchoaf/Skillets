@@ -21,9 +21,6 @@
                     <external>
                         <list>
                             <entry name="{{ gateway_name }}">
-                                <ip>
-                                    <ipv4>{{ gateway_intf }}</ipv4>
-                                </ip>
                                 <priority-rule>
                                     <entry name="Any">
                                         <priority>1</priority>
