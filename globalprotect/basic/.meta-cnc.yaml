@@ -104,9 +104,9 @@ snippets:
       xpath: /config/shared/authentication-profile
       file: 3-Local_Test_User_Authentication_Profile.xml
 # vsys-import
-    - name: vsys_imports
-      xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/import
-      file: 4b-vsys-imports.xml
+#    - name: vsys_imports
+#      xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/import
+#      file: 4b-vsys-imports.xml
 # Tunnel Interface zone
     - name: tunnel_interface_zone
       xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/zone
