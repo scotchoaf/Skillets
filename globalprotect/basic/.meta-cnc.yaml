@@ -98,34 +98,34 @@ snippets:
 # Virtual Router
     - name: virtual_router_upate
       xpath: /config/devices/entry[@name='localhost.localdomain']/network/virtual-router
-      file: 6-Modify_Virtual_Router.xml
+      file: 2-Modify_Virtual_Router.xml
 # vsys-import
     - name: vsys_imports
       xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/import
-      file: 4b-vsys-imports.xml
+      file: 3-vsys-imports.xml
 # Tunnel Interface zone
     - name: tunnel_interface_zone
       xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/zone
-      file: 7-Tunnel_Interface_zone.xml
+      file: 4-Tunnel_Interface_zone.xml
 # Local Test User Database
     - name: Test user database
       xpath: /config/shared/local-user-database
-      file: 2-Local_Test_User_Database.xml
+      file: 5-Local_Test_User_Database.xml
 # Local Test User Authentication Profile
     - name: Test user database
       xpath: /config/shared/authentication-profile
-      file: 3-Local_Test_User_Authentication_Profile.xml
+      file: 6-Local_Test_User_Authentication_Profile.xml
 # Gateway-1  
     - name: gateway-1_configuration
       xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/global-protect/global-protect-gateway
-      file: 4-Gateway-1.xml
+      file: 7-Gateway-1.xml
 # Gateway-1-N
     - name: gateway-1-N_configuration
       xpath: /config/devices/entry[@name='localhost.localdomain']/network/tunnel/global-protect-gateway
-      file: 4a-Gateway-1-N.xml
+      file: 7b-Gateway-1-N.xml
 # Portal-1  
     - name: portal-1_configuration
       xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/global-protect/global-protect-portal
-      file: 5-Portal-1.xml
+      file: 8-Portal-1.xml
 
 
