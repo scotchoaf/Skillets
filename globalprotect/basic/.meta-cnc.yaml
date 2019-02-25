@@ -111,14 +111,14 @@ snippets:
     - name: Test user database
       xpath: /config/shared/authentication-profile
       file: 6-Local_Test_User_Authentication_Profile.xml
-# Gateway-1  
-    - name: gateway-1_configuration
-      xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/global-protect/global-protect-gateway
-      file: 7a-Gateway-1.xml
 # Gateway-1-N
     - name: gateway-1-N_configuration
       xpath: /config/devices/entry[@name='localhost.localdomain']/network/tunnel/global-protect-gateway
       file: 7b-Gateway-1-N.xml
+# Gateway-1  
+    - name: gateway-1_configuration
+      xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/global-protect/global-protect-gateway
+      file: 7a-Gateway-1.xml
 # Portal-1  
     - name: portal-1_configuration
       xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/global-protect/global-protect-portal
