@@ -1,7 +1,7 @@
 <import>
       <network>
         <interface>
-          <member>tunnel.100</member>
+          <member>{{ tunnel_name }}</member>
         </interface>
       </network>
 </import>

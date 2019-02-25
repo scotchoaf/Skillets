@@ -107,6 +107,10 @@ snippets:
     - name: vsys_imports
       xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/import
       file: 4b-vsys-imports.xml
+# Tunnel Interface zone
+    - name: tunnel_interface_zone
+      xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/zone
+      file: 7-Tunnel_Interface_zone.xml
 # Gateway-1  
     - name: gateway-1_configuration
       xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/global-protect/global-protect-gateway
@@ -119,8 +123,5 @@ snippets:
     - name: portal-1_configuration
       xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/global-protect/global-protect-portal
       file: 5-Portal-1.xml
-# Tunnel Interface zone
-    - name: tunnel_interface_zone
-      xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/zone
-      file: 7-Tunnel_Interface_zone.xml
+
 
