@@ -46,7 +46,7 @@ variables:
     default: ssl_tls_service_profile
     type_hint: text
   - name: external_gateway_ip_address
-    description: Gateway-1 - IP address of the external gateway
+    description: Portal-1 - IP address of the external gateway
     default: 192.168.55.20
     type_hint: ip_address
   - name: trusted_CA
@@ -54,7 +54,7 @@ variables:
     default: GP_Root_CA
     type_hint: text
   - name: gateway_name
-    description: Reference name for the GP gateway
+    description: Gateway-1 - Reference name for the GP gateway
     default: Gateway-1
     type_hint: text
   - name: gateway_intf
@@ -62,11 +62,11 @@ variables:
     default: ethernet1/1
     type_hint: text
   - name: gateway_ip
-    description: Gateway-1 IP address mapped to the GP gateway
+    description: Gateway-1 - IP address mapped to the GP gateway
     default: 192.168.55.20/24
     type_hint: text
   - name: user_ip_pool
-    description: Gateway-1 IP pool assigned to GP users
+    description: Gateway-1 - IP pool assigned to GP users
     default: 10.10.10.2-10.10.10.100
     type_hint: text
   - name: tunnel_zone
@@ -74,15 +74,15 @@ variables:
     default: Untrust
     type_hint: text
   - name: portal_name
-    description: Reference name for the GP portal
+    description: Portal-1 - Reference name for the GP portal
     default: Portal-1
     type_hint: text
   - name: portal_intf
-    description: Interface mapped to the GP portal
+    description: Portal-1 - Interface mapped to the GP portal
     default: ethernet1/1
     type_hint: text
   - name: portal_ip_address_netmask
-    description: Portal-1 - IP address and Netmask
+    description: Portal-1 - IP address and Netmask for Portal-1 interface
     default: 192.168.55.20/24
     type_hint: ip_address
 
