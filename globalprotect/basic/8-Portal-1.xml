@@ -2,7 +2,7 @@
     <portal-config>
         <local-address>
             <ip>
-                <ipv4>{{ portal_ip_address_netmask }}</ipv4>
+                <ipv4>{{ gateway_ip }}</ipv4>
             </ip>
             <interface>{{ portal_intf }}</interface>
         </local-address>
