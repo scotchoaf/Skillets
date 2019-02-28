@@ -71,7 +71,7 @@ variables:
     type_hint: text
   - name: tunnel_zone
     description: zone used to terminate GP tunnel
-    default: Untrust
+    default: GP_zone
     type_hint: text
   - name: portal_name
     description: Portal-1 - Reference name for the GP portal
