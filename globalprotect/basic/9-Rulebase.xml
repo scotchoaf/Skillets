@@ -1,6 +1,4 @@
- <security>
-        <rules>
-          <entry name="GP-to-Trust-and Untrust">
+<entry name="GP-to-Trust-and Untrust">
             <to>
               <member>Trust</member>
               <member>Untrust</member>
@@ -32,5 +30,3 @@
             <action>allow</action>
             <description>This is a policy that allows access of all services and protocols to pass from the GP-zone to the Trust zone and the Untrust zone.</description>
           </entry>
-        </rules>
-      </security>
