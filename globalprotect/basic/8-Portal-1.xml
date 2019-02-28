@@ -3,9 +3,9 @@
         <local-address>
             <interface>{{ portal_intf }}</interface>
         </local-address>
-        <ip>
-            <ipv4> 192.168.55.20/24 }}</ipv4>
-        </ip>
+            <ip>
+                <ipv4> 192.168.55.20/24 }}</ipv4>
+            </ip>
         <custom-login-page>factory-default</custom-login-page>
         <custom-home-page>factory-default</custom-home-page>
         <ssl-tls-service-profile>{{ ssl_tls_service_profile }}</ssl-tls-service-profile>
