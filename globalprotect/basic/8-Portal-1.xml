@@ -22,7 +22,7 @@
                         <list>
                             <entry name="{{ gateway_name }}">
                                 <ip>
-                                    <ipv4>{{ gateway_ip }}</ipv4>
+                                    <ipv4>{192.168.55.20</ipv4>
                                 </ip>
                                 <priority-rule>
                                     <entry name="Any">
