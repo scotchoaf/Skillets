@@ -55,6 +55,7 @@
               <no-direct-access-to-local-network>no</no-direct-access-to-local-network>
             </entry>
           </remote-user-tunnel-configs>
+             <remote-user-tunnel>tunnel.100</remote-user-tunnel>
           <ssl-tls-service-profile>{{ ssl_tls_service_profile }}</ssl-tls-service-profile>
           <tunnel-mode>yes</tunnel-mode>
 </entry>
