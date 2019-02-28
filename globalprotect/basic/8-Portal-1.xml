@@ -1,9 +1,6 @@
 <entry name="{{ portal_name }}">
     <portal-config>
         <local-address>
- #           <ip>
- #               <ipv4>{{ external_gateway_ip_address }}</ipv4>
- #           </ip>
             <interface>{{ portal_intf }}</interface>
         </local-address>
         <custom-login-page>factory-default</custom-login-page>
