@@ -10,6 +10,9 @@
       <applications/>
       <enabled>no</enabled>
     </exclude-video-traffic>
+     <dns-server>
+       <primary>8.8.8.8</primary>
+     </dns-server>
   </client>
   <ipsec>
     <third-party-client>
