@@ -1,0 +1,38 @@
+    <rulebase>
+      <security>
+        <rules>
+          <entry name="GP-to-Trust-and Untrust">
+            <to>
+              <member>Trust</member>
+              <member>Untrust</member>
+            </to>
+            <from>
+              <member>{{ Tunnel-zone }}</member>
+            </from>
+            <source>
+              <member>any</member>
+            </source>
+            <destination>
+              <member>any</member>
+            </destination>
+            <source-user>
+              <member>any</member>
+            </source-user>
+            <category>
+              <member>any</member>
+            </category>
+            <application>
+              <member>any</member>
+            </application>
+            <service>
+              <member>application-default</member>
+            </service>
+            <hip-profiles>
+              <member>any</member>
+            </hip-profiles>
+            <action>allow</action>
+            <description>This is a policy that allows access of all services and protocols to pass from the GP-zone to the Trust zone and the Untrust zone.</description>
+          </entry>
+        </rules>
+      </security>
+    </rulebase>
