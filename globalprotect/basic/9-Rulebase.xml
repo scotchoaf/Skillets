@@ -29,4 +29,4 @@
             </hip-profiles>
             <action>allow</action>
             <description>This is a policy that allows access of all services and protocols to pass from the GP-zone to the Trust zone and the Untrust zone.</description>
-          </entry>
+</entry>
