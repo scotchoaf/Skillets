@@ -1,5 +1,4 @@
-    <rulebase>
-      <security>
+ <security>
         <rules>
           <entry name="GP-to-Trust-and Untrust">
             <to>
@@ -7,7 +6,7 @@
               <member>Untrust</member>
             </to>
             <from>
-              <member>{{ Tunnel-zone }}</member>
+              <member>{{ tunnel_zone }}</member>
             </from>
             <source>
               <member>any</member>
@@ -35,4 +34,3 @@
           </entry>
         </rules>
       </security>
-    </rulebase>

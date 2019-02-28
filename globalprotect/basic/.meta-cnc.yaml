@@ -123,7 +123,7 @@ snippets:
     - name: portal-1_configuration
       xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/global-protect/global-protect-portal
       file: 8-Portal-1.xml
-# Portal-1
-    - name: rulebase
+# Rulebase
+    - name: Rulebase
       xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/rulebase/security/rules
       file: 9-Rulebase.xml
