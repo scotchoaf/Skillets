@@ -1,8 +1,11 @@
 <entry name="{{ portal_name }}">
     <portal-config>
         <local-address>
-            <interface>{{ portal_intf }}</interface>
-        </local-address>
+              <ip>
+                <ipv4>192.168.55.20/24</ipv4>
+              </ip>
+              <interface>ethernet1/1</interface>
+            </local-address>
         <client-auth>
               <entry name="default">
                 <os>Any</os>
