@@ -2,7 +2,10 @@
     <portal-config>
         <local-address>
             <interface>{{ portal_intf }}</interface>
-            <ipv4>{{ portal_ip_address_netmask }}</ipv4>
+            <ip>
+                <ipv4>{{ portal_ip_address_netmask }}</ipv4>
+            </ip>
+        </local-address>
         </local-address>
         <custom-login-page>factory-default</custom-login-page>
         <custom-home-page>factory-default</custom-home-page>
