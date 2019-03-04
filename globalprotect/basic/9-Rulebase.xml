@@ -1,7 +1,7 @@
 <entry name="GP-to-Trust-and Untrust">
             <to>
-              <member>Trust</member>
-              <member>Untrust</member>
+              <member>{{ Trusted_zone }}</member>
+              <member>{{ Untrusted_zone }}</member>
             </to>
             <from>
               <member>{{ tunnel_zone }}</member>
