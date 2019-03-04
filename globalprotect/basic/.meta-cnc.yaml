@@ -110,23 +110,23 @@ snippets:
 # Tunnel Interface zone
     - name: tunnel_interface_zone
       xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/zone
-      file: 4-Tunnel_Interface_zone.xml
+      file: 3-Tunnel_Interface_zone.xml
 # Local Test User Database
     - name: Test user database
       xpath: /config/shared/local-user-database
-      file: 5-Local_Test_User_Database.xml
+      file: 4-Local_Test_User_Database.xml
 # Local Test User Authentication Profile
     - name: Test user database
       xpath: /config/shared/authentication-profile
-      file: 6-Local_Test_User_Authentication_Profile.xml
+      file: 5-Local_Test_User_Authentication_Profile.xml
 # Gateway-1-N
     - name: gateway-1-N_configuration
       xpath: /config/devices/entry[@name='localhost.localdomain']/network/tunnel/global-protect-gateway
-      file: 7b-Gateway-1-N.xml
+      file: 7-Gateway-1-N.xml
 # Gateway-1  
     - name: gateway-1_configuration
       xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/global-protect/global-protect-gateway
-      file: 7a-Gateway-1.xml
+      file: 6-Gateway-1.xml
 # Portal-1  
     - name: portal-1_configuration
       xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/global-protect/global-protect-portal
