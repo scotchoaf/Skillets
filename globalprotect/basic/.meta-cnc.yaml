@@ -21,7 +21,7 @@ labels:
 
 variables:
   - name: Server_certificate
-    description: SSL Server Certificate
+    description: SSL Server Certificate - manually generated
     default: GP_Server
     type_hint: text
   - name: tunnel_name
@@ -70,7 +70,7 @@ variables:
     default: 10.10.10.2-10.10.10.100
     type_hint: text
   - name: tunnel_zone
-    description: zone used to terminate GP tunnel
+    description: Zone used for the GlobalProtect tunnel interface
     default: GP_zone
     type_hint: text
   - name: Trusted_zone
