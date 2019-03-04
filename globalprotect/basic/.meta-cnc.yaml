@@ -73,6 +73,14 @@ variables:
     description: zone used to terminate GP tunnel
     default: GP_zone
     type_hint: text
+  - name: Trusted_zone
+    description: Name of the trusted zone
+    default: Trust
+    type_hint: text
+  - name: Untrusted_zone
+    description: Name ofd the untrusted zone
+    default: Untrust
+    type_hint: text
   - name: portal_name
     description: Portal-1 - Reference name for the GP portal
     default: Portal-1
@@ -101,14 +109,6 @@ snippets:
       file: 2-Modify_Virtual_Router.xml
 # Tunnel Interface zone
     - name: tunnel_interface_zone
-      xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/zone
-      file: 4-Tunnel_Interface_zone.xml
-# Trusted Interface zone
-    - name: Trusted_zone
-      xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/zone
-      file: 4-Tunnel_Interface_zone.xml
-# Untrusted Interface zone
-    - name: Untrusted_zone
       xpath: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/zone
       file: 4-Tunnel_Interface_zone.xml
 # Local Test User Database
