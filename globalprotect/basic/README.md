@@ -5,20 +5,24 @@
 
 * GP mobile user connection using a local user database
 
-* Termination into untrust zone
+* Termination into a zone called GP_zone
 
 * Gateway and Portal configuration included
 
 ### Requirements
+* Generate a self-signed CA
+    * Generate a server certificate.  The above root signing it.
 
-* untrust ethernet configured including IP address
+* untrust ethernet configured including IP address - Ethernet1/1
 
-* existing virtual router configuration
+* trust ethernet configured including IP address - Ethernet1/2
+
+* existing virtual router configuration - Tunnel interface will be added
 
 
 
 ### Next steps
 
-* security policy requirements
+* Commit the configuration and test
 
 * ???
