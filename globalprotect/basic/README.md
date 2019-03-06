@@ -1,28 +1,34 @@
 # Basic GlobalProtect Configuration
 
+This skillet configures the GlobalProtect portal and gateway using a
+local database for user authentication.
+
 
 ### Highlights of this templates
 
 * GP mobile user connection using a local user database
 
-* Termination into a zone called GP_zone
+* Tunnel termination into a GP security zone
 
-* Gateway and Portal configuration included
-
-### Requirements
-* Generate a self-signed CA
-    * Generate a server certificate.  The above root signing it.
-
-* untrust ethernet configured including IP address - Ethernet1/1
-
-* trust ethernet configured including IP address - Ethernet1/2
-
-* existing virtual router configuration - Tunnel interface will be added
+* Gateway and Portal configuration
 
 
+### Prerequisites
 
-### Next steps
+* A self-signed certificate local to the firewall
+    * Generate a local Certificate Authority (CA) root
+    * Generate a certificate signed by the local CA root
 
-* Commit the configuration and test
+* Public facing interface with IP address (eg. ethernet1/1)
 
-* ???
+* Trust and Untrust zones for tunnel security policy
+
+* Virtual router configuration used for tunnel association
+
+
+
+### Next steps after skillet configuration
+
+* Install and configuration mobile devices using the portal IP address
+
+* Add additional users to the local DB as required
