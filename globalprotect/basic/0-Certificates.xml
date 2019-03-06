@@ -1,11 +1,11 @@
 
 <entry name="GP_Root_CA">
           <not-valid-before>Feb 21 16:18:44 2019 GMT</not-valid-before>
-          <issuer>CN=GP_Root_CA</issuer>
+          <issuer>/CN=GP_Root_CA</issuer>
           <not-valid-after>Feb 21 16:18:44 2020 GMT</not-valid-after>
           <common-name>GP_Root_CA</common-name>
           <ca>yes</ca>
-          <subject>CN=GP_Root_CA</subject>
+          <subject>/CN=GP_Root_CA</subject>
           <public-key>-----BEGIN CERTIFICATE-----
 MIICyjCCAbKgAwIBAgIJAKxm00MMNdxNMA0GCSqGSIb3DQEBCwUAMBUxEzARBgNV
 BAMUCkdQX1Jvb3RfQ0EwHhcNMTkwMjIxMTYxODQ0WhcNMjAwMjIxMTYxODQ0WjAV
@@ -29,11 +29,11 @@ DpO0nrB4lYeKUzjxyqojxh1yT3D7zhUyg15cv8Jp9i+AHa5eAkmK86ikyK75Yw==
         </entry>
         <entry name="GP_Server">
           <not-valid-before>Feb 21 16:23:53 2019 GMT</not-valid-before>
-          <issuer>CN=GP_Root_CA</issuer>
+          <issuer>/CN=GP_Root_CA</issuer>
           <not-valid-after>Feb 21 16:23:53 2020 GMT</not-valid-after>
           <common-name>{{ external_gateway_ip_address }}</common-name>
           <ca>no</ca>
-          <subject>CN={{ external_gateway_ip_address }}</subject>
+          <subject>/CN={{ external_gateway_ip_address }}</subject>
           <public-key>-----BEGIN CERTIFICATE-----
 MIIDGTCCAgGgAwIBAgIFAOuwlQMwDQYJKoZIhvcNAQELBQAwFTETMBEGA1UEAxQK
 R1BfUm9vdF9DQTAeFw0xOTAyMjExNjIzNTNaFw0yMDAyMjExNjIzNTNaMBgxFjAU
