@@ -21,7 +21,9 @@ local database for user authentication.
 
 * Public facing interface with IP address (eg. ethernet1/1)
 
-* Trust and Untrust zones for tunnel security policy
+* Private facing interface with IP address (eg. ethernet1/2)
+
+* Trust (ethernet1/2) and Untrust (ethernet1/2) zones for tunnel security policy
 
 * Virtual router configuration used for tunnel association
 
