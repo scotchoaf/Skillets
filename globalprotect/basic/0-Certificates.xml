@@ -36,10 +36,10 @@ DpO0nrB4lYeKUzjxyqojxh1yT3D7zhUyg15cv8Jp9i+AHa5eAkmK86ikyK75Yw==
           <not-valid-before>Feb 21 16:23:53 2019 GMT</not-valid-before>
           <issuer>/CN=GP_Root_CA</issuer>
           <not-valid-after>Feb 21 16:23:53 2020 GMT</not-valid-after>
-          <common-name>192.168.55.20</common-name>
+          <common-name>{{ external_gateway_ip_address }}</common-name>
           <expiry-epoch>1582302233</expiry-epoch>
           <ca>no</ca>
-          <subject>/CN=192.168.55.20</subject>
+          <subject>/CN={{ external_gateway_ip_address }}</subject>
           <public-key>-----BEGIN CERTIFICATE-----
 MIIDGTCCAgGgAwIBAgIFAOuwlQMwDQYJKoZIhvcNAQELBQAwFTETMBEGA1UEAxQK
 R1BfUm9vdF9DQTAeFw0xOTAyMjExNjIzNTNaFw0yMDAyMjExNjIzNTNaMBgxFjAU
