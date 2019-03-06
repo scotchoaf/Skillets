@@ -3,7 +3,7 @@
           <not-valid-before>Feb 21 16:18:44 2019 GMT</not-valid-before>
           <issuer>/CN=GP_Root_CA</issuer>
           <not-valid-after>Feb 21 16:18:44 2020 GMT</not-valid-after>
-          <common-name>GP_Root_CA</common-name>
+          <common-name>/CN=GP_Root_CA</common-name>
           <ca>yes</ca>
           <subject>/CN=GP_Root_CA</subject>
           <public-key>-----BEGIN CERTIFICATE-----
