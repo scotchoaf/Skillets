@@ -96,9 +96,9 @@ variables:
 
 snippets:
 # Creation of self-signed certificates for this template - in test
-    - name: create_certificates
-      xpath: /config/shared/certificate
-      file: 0-Certificates.xml
+#    - name: create_certificates
+#      xpath: /config/shared/certificate
+#      file: 0-Certificates.xml
 # Profile relating to the certs
     - name: ssl_tls_profile
       xpath: /config/shared/ssl-tls-service-profile
