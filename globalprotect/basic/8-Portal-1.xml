@@ -244,11 +244,6 @@
                                 <member>no</member>
                             </value>
                         </entry>
-                        <entry name="use-proxy">
-                            <value>
-                                <member>yes</member>
-                            </value>
-                        </entry>
                         <entry name="wsc-autodetect">
                             <value>
                                 <member>yes</member>
@@ -272,11 +267,6 @@
                         <entry name="ipv6-preferred">
                             <value>
                                 <member>yes</member>
-                            </value>
-                        </entry>
-                        <entry name="init-panel">
-                            <value>
-                                <member>no</member>
                             </value>
                         </entry>
                     </config>
