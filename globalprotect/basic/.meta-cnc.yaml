@@ -57,6 +57,7 @@ variables:
     description: Gateway-1 - Reference name for the GP gateway
     default: Gateway-1
     type_hint: text
+#  This is a test variable to see if a dropdown could work.  It does not sho in the form at all.
 #  - name: gateway_intf
 #    description: Interface mapped to the GP gateway
 #    default: ethernet1/1
