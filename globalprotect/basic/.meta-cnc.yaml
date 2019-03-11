@@ -65,7 +65,7 @@ variables:
       - key: ethernet1/1
         value: ethernet1/1
       - key: ethernet1/2
-        value: ethernet 1/2
+        value: ethernet1/2
 #  - name: gateway_intf
 #    description: Interface mapped to the GP gateway (ethernet1/n)
 #    default: ethernet1/1
