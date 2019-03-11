@@ -57,8 +57,12 @@ variables:
     description: Gateway-1 - Reference name for the GP gateway
     default: Gateway-1
     type_hint: text
+#  - name: gateway_intf
+#    description: Interface mapped to the GP gateway
+#    default: ethernet1/1
+#    type_hint: text
   - name: gateway_intf
-    description: Interface mapped to the GP gateway
+    description: Interface mapped to the GP gateway (ethernet1/n)
     default: ethernet1/1
     type_hint: text
   - name: gateway_ip
