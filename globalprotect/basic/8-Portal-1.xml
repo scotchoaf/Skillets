@@ -4,7 +4,7 @@
               <ip>
                 <ipv4>{{ portal_ip_address_netmask }}</ipv4>
               </ip>
-              <interface>ethernet1/1</interface>
+              <interface>{{ portal_intf }}</interface>
             </local-address>
         <client-auth>
               <entry name="default">
