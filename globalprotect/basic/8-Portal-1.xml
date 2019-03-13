@@ -2,7 +2,7 @@
     <portal-config>
         <local-address>
               <ip>
-                <ipv4>192.168.55.20/24</ipv4>
+                <ipv4>{{ portal_ip_address_netmask }}</ipv4>
               </ip>
               <interface>ethernet1/1</interface>
             </local-address>
