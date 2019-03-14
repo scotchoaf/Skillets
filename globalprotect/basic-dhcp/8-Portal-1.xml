@@ -1,7 +1,8 @@
 <entry name="{{ portal_name }}">
     <portal-config>
         <local-address>
-              <interface>{{ portal_intf }}</interface>
+            <interface>{{ portal_intf }}</interface>
+            <ip/>
             </local-address>
         <client-auth>
               <entry name="default">
