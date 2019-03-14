@@ -28,6 +28,7 @@
                     <external>
                         <list>
                             <entry name="{{ gateway_name }}">
+                                <fqdn>{{ gateway_fgdn }}</fqdn>
                                 <priority-rule>
                                     <entry name="Any">
                                         <priority>1</priority>

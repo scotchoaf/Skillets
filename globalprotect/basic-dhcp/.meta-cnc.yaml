@@ -58,6 +58,10 @@ variables:
     description: Interface mapped to the GP gateway (ethernet1/n)
     default: ethernet1/1
     type_hint: text
+  - name: gateway_fqdn
+    description: FQDN used for gateway access
+    default: gp.fqdn.com
+    type_hint: text
   - name: user_ip_pool
     description: Gateway-1 - IP pool assigned to GP users
     default: 10.10.10.2-10.10.10.100
