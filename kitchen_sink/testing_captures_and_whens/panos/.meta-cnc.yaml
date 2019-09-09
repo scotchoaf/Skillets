@@ -1,0 +1,65 @@
+name: merge_device_system_testing
+label: IronSkillet Audit Device System
+
+description: |
+  This Skillet checks the device system settings and sets the recommended values if they are not already
+  configured
+
+type: panos
+labels:
+  collection: Brownfield Skillets
+
+variables:
+  - name: FW_NAME
+    description: Firewall hostname
+    default: panos-01
+    type_hint: text
+
+snippets:
+
+  - name: show_logical_interfaces
+    cmd: op
+    cmd_str: <show><interface>logical</interface></show>
+    outputs:
+      # this output shows how to capture a list of interface names, because the xpath returns a list of identically
+      # named elements, we'll pull the text from each and return a list
+      - name: interface_names
+        capture_pattern: ./entry/name
+  - name: show_device_system
+    cmd: show
+    xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
+    outputs:
+      # this output shows how to capture a list of tags configured under the xpath. This is because this xpath (
+      # (if configured) will return a list of unique elements, which may or may not have children. In that case,
+      # we'll only return a list of the tags found. An empty list indicates this xpath is not configured
+      - name: stats_service_present
+        capture_pattern: update-schedule/statistics-service/
+      # this output will return the value from this xpath because it is a leaf node, and empty text string would be
+      # returned if this was not configured
+      - name: app_reports_value
+        capture_pattern: update-schedule/statistics-service/application-reports
+      # this output will return the element, or list of elements, as a python dict or a list of python dicts depending
+      # on the xpath given. If the xpath returns a single element, then it will be converted into an object. If there
+      # are multiple, then we will return a list of objects
+      - name: update_schedule_object
+        capture_object: update-schedule
+  - name: show_device_setting
+    cmd: show
+    xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting
+    # this shows the 'when' conditional which will cause this snippet to be SKIPPED if the condition returns false.
+    # this shows how to use the previously defined capture_object to check if a configuration value is present.
+    # this may be useful if you want to check multiple things in the config without defining multiple captured values
+    # individually
+    when: update_schedule_object['update-schedule']['statistics-service']['application-reports'] == 'yes'
+    outputs:
+      # this shows how to convert the entire returned xml response into an object we can examine later in a when
+      # conditional, or possibly influence logic in a jinja2 template, or even influence which skillet we execute next
+      # in a workflow
+      - name: deviceconfig_setting
+        capture_object: .
+  - name: configure_app_reports
+    cmd: set
+    xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
+    file: device_system.xml
+    cherry_pick: update-schedule/statistics-service/application-reports
+    when: app_reports_value != 'yes'
