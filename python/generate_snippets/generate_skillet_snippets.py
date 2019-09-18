@@ -28,7 +28,7 @@ else:
 snippets = list()
 
 try:
-    device = Panoply(hostname=ip, api_username=username, api_password=password)
+    device = Panoply(hostname=ip, api_username=username, api_password=password, debug=True)
     snippets = device.generate_skillet(from_candidate=fc)
     if len(snippets) == 0 and fc is True:
         print('No Candidate Configuration can be found to use to build a skillet!')
