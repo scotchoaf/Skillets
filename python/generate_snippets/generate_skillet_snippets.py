@@ -17,18 +17,28 @@ from skilletlib.panoply import Panoply
 username = os.environ.get('TARGET_USERNAME', 'admin')
 password = os.environ.get('TARGET_PASSWORD', 'admin')
 ip = os.environ.get('TARGET_IP', '')
+from_candidate = os.environ.get('FROM_CANDIDATE', 'False')
+
+# check if we should generate the skillet from the candidate of the running config
+if from_candidate == 'True':
+    fc = True
+else:
+    fc = False
 
 snippets = list()
 
 try:
     device = Panoply(hostname=ip, api_username=username, api_password=password)
-    snippets = device.generate_skillet()
+    snippets = device.generate_skillet(from_candidaate=fc)
     print(json.dumps(snippets, indent=2))
     sys.exit(0)
 
 except SkilletLoaderException as se:
-    print('[]')
+    print('Error Executing Skillet')
+    print(se)
     sys.exit(1)
 except LoginException as le:
-    print('[]')
+    print('Error Logging into device')
+    print(le)
     sys.exit(1)
+

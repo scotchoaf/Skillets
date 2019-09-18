@@ -28,6 +28,16 @@ variables:
     description: Password
     default:
     type_hint: password
+  - name: FROM_CANDIDATE
+    description: Configuration Source
+    type_hint: dropdown
+    default: "False"
+    dd_list:
+      - key: "From Running Configuration"
+        value: "False"
+      - key: "From Candidate Configuration"
+        value: True
+
 
 
 snippets:
