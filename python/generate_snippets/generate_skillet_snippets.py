@@ -29,7 +29,7 @@ snippets = list()
 
 try:
     device = Panoply(hostname=ip, api_username=username, api_password=password)
-    snippets = device.generate_skillet(from_candidaate=fc)
+    snippets = device.generate_skillet(from_candidate=fc)
     print(json.dumps(snippets, indent=2))
     sys.exit(0)
 
