@@ -47,4 +47,4 @@ snippets:
     output_type: json
     outputs:
       - name: snippets
-        capture_pattern: .
+
