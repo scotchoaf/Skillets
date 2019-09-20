@@ -44,3 +44,7 @@ snippets:
   - name: script
     file: generate_skillet_snippets.py
     input_type: env
+    output_type: json
+    outputs:
+      - name: snippets
+        capture_pattern: .
