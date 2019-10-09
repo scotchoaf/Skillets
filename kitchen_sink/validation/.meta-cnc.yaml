@@ -24,14 +24,19 @@ snippets:
         capture_object: update-schedule
   - name: update_schedule_configured
     cmd: validate
+    # test to determine if update-schedule is configured
     test: update_schedule_object is none
+    # if the test is TRUE, then return this message, doc link, and severity
     message: Update Schedule Should be configured!
     documentation_link: http://readthedocs.io
     severity: medium
   - name: update_schedule_stats_service_configured
     cmd: validate
-    test: update_schedule_object|has_config('statistics-service')
+    # test to see if the update-schedule does NOT have a child element with the name 'statistics-service'
+    test: update_schedule_object|missing_config('statistics-service')
+    # if the test is TRUE, then return this information
     message: Statistics Service Should be configured!
     documentation_link: http://readthedocs.io
     severity: medium
+    # only run this test when update_schedule is actually configured
     when: update_schedule_object is not none
