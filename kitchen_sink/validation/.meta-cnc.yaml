@@ -4,7 +4,7 @@ label: Validate Some Stuff
 description: |
   This skillet does a basic validation
 
-type: panos-validation
+type: pan_validation
 labels:
   collection: Experimental Skillets
 
