@@ -31,10 +31,10 @@ snippets:
     documentation_link: https://iron-skillet.readthedocs.io
     severity: medium
   - name: update_schedule_stats_service_configured
-    label: Ensure Statistics Service is enabled
+    label: Ensure Wildfire Checks every 1 minute
     cmd: validate
     # test to see if the update-schedule does NOT have a child element with the name 'statistics-service'
-    test: update_schedule_object|missing_config('statistics-service')
+    test: update_schedule_object['wildfire']['recurring']['every-min'] is not none
     # if the test is TRUE, then return this information
     documentation_link: https://docs.paloaltonetworks.com/pan-os/8-0/pan-os-new-features/content-inspection-features/telemetry-and-threat-intelligence-sharing
     severity: medium
