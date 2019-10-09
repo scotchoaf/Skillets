@@ -1,0 +1,37 @@
+name: validate-something-06FA23C1-BB8C-407D-B61A-B0FB8D89180E
+label: Validate Some Stuff
+
+description: |
+  This skillet does a basic validation
+
+type: panos-validation
+labels:
+  collection: Experimental Skillets
+
+variables:
+  - name: FW_NAME
+    description: Some Parameter
+    default: yes
+    type_hint: text
+
+snippets:
+  - name: show_device_system
+    cmd: show
+    xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
+    outputs:
+      # capture all the xml elements found at the 'update-schedule' xpath and convert it into a python object
+      - name: update_schedule_object
+        capture_object: update-schedule
+  - name: update_schedule_configured
+    cmd: validate
+    test: update_schedule_object is none
+    message: Update Schedule Should be configured!
+    documentation_link: http://readthedocs.io
+    severity: medium
+  - name: update_schedule_stats_service_configured
+    cmd: validate
+    test: update_schedule_object|has_config('statistics-service')
+    message: Statistics Service Should be configured!
+    documentation_link: http://readthedocs.io
+    severity: medium
+    when: update_schedule_object is not none
