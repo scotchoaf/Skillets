@@ -45,9 +45,9 @@ snippets:
     cmd: validate
     # test to see if the update-schedule does NOT have a child element with the name 'statistics-service'
     test: |
-      (update_schedule_object['wildfire'] is not none and
-      update_schedule_object['wildfire']['recurring'] is not none and
-      update_schedule_object['wildfire']['recurring']['every-min'] is not none)
+      (update_schedule_object['update-schedule']['wildfire'] is not none and
+      update_schedule_object['update-schedule']['wildfire']['recurring'] is not none and
+      update_schedule_object['update-schedule']['wildfire']['recurring']['every-min'] is not none)
     # if the test is TRUE, then return this information
     documentation_link: https://docs.paloaltonetworks.com/pan-os/8-0/pan-os-new-features/content-inspection-features/telemetry-and-threat-intelligence-sharing
     severity: medium
