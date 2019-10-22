@@ -1,12 +1,14 @@
-name: validate-something-06FA23C1-BB8C-407D-B61A-B0FB8D89180E
-label: Validate Some Stuff
+name: validate-IronSkillet-bae945bc-c667-4e56-a3fc-73bbb5afbe0d
+label: Validate IronSkillet NGFW config
 
 description: |
-  This skillet does a basic validation
+  This skillet does a basic validation for IronSkillet day one configuration
 
 type: pan_validation
 labels:
-  collection: Experimental Skillets
+  collection:
+    - IronSkillet
+    - Validation
 
 variables:
   - name: FW_NAME
