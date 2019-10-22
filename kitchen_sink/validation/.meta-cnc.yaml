@@ -15,41 +15,302 @@ variables:
     type_hint: text
 
 snippets:
-  - name: show_device_system
+  - name: show_deviceconfig
     cmd: show
-    xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
+    xpath: /config
     outputs:
-      # capture all the xml elements found at the 'update-schedule' xpath and convert it into a python object
-      - name: update_schedule_object
-        capture_object: update-schedule
-  - name: update_schedule_configured
-    label: Ensure Update Schedules are Configured
-    cmd: validate
-    # test to determine if update-schedule is configured
-    test: update_schedule_object is none
-    # if the test is TRUE, then return this message, doc link, and severity
-    documentation_link: https://iron-skillet.readthedocs.io
+      # capture all the xml elements referenced for validations using the full config file
+      # The slash or no slash is very confusing. way to normalize??
+      - name: telemetry
+        capture_object: devices/entry[@name='localhost.localdomain']/deviceconfig/system/update-schedule/statistics-service
+      - name: threats_update
+        capture_object: devices/entry[@name='localhost.localdomain']/deviceconfig/system/update-schedule/threats/
+      - name: wf_update
+        capture_object: devices/entry[@name='localhost.localdomain']/deviceconfig/system/update-schedule/wildfire/
+      - name: av_update
+        capture_object: devices/entry[@name='localhost.localdomain']/deviceconfig/system/update-schedule/anti-virus/
+      - name: snmp_version
+        capture_object: devices/entry[@name='localhost.localdomain']/deviceconfig/system/snmp-setting/*/version/
+      - name: dns_servers
+        capture_object: devices/entry[@name='localhost.localdomain']/deviceconfig/system/dns-setting/servers
+      - name: ntp_servers
+        capture_object: devices/entry[@name='localhost.localdomain']/deviceconfig/system/ntp-servers
+      - name: login_banner
+        capture_object: devices/entry[@name='localhost.localdomain']/deviceconfig/system/login-banner
+      - name: timezone
+        capture_object: devices/entry[@name='localhost.localdomain']/deviceconfig/system/timezone
+      # for device_setting xpath using this single value and all tests below build from here
+      # in contrast to device-system above that has an object that is more granular
+      - name: device_setting
+        capture_object: devices/entry[@name='localhost.localdomain']/deviceconfig/setting
+      - name: wf_limit_archive
+        capture_pattern: devices/entry[@name='localhost.localdomain']/deviceconfig/setting/wildfire/file-size-limit/entry[@name='archive']/size-limit
+      - name: wf_limit_linux
+        capture_pattern: devices/entry[@name='localhost.localdomain']/deviceconfig/setting/wildfire/file-size-limit/entry[@name='linux']/size-limit
+      - name: wf_limit_script
+        capture_pattern: devices/entry[@name='localhost.localdomain']/deviceconfig/setting/wildfire/file-size-limit/entry[@name='script']/size-limit
+      - name: wf_report
+        capture_object: devices/entry[@name='localhost.localdomain']/deviceconfig/setting/wildfire
+      - name: av_profiles
+        capture_object: devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/virus
+
+  - name: telemetry_fully_enabled
+    label: enable all telemetry attributes
+    test: |
+      (
+      telemetry['statistics-service']['application-reports'] == 'yes'
+      and telemetry['statistics-service']['threat-prevention-reports'] == 'yes'
+      and telemetry['statistics-service']['passive-dns-monitoring'] == 'yes'
+      and telemetry['statistics-service']['threat-prevention-pcap'] == 'yes'
+      and telemetry['statistics-service']['threat-prevention-information'] == 'yes'
+      and telemetry['statistics-service']['passive-dns-monitoring'] == 'yes'
+      and telemetry['statistics-service']['url-reports'] == 'yes'
+      and telemetry['statistics-service']['health-performance-reports'] == 'yes'
+      and telemetry['statistics-service']['file-identification-reports'] == 'yes'
+      )
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/overview.html
     severity: medium
-  - name: update_schedule_stats_service_configured
-    label: Ensure Statistics Service is enabled
     cmd: validate
-    # test to see if the update-schedule does NOT have a child element with the name 'statistics-service'
-    test: update_schedule_object|missing_config('statistics-service')
-    # if the test is TRUE, then return this information
-    documentation_link: https://docs.paloaltonetworks.com/pan-os/8-0/pan-os-new-features/content-inspection-features/telemetry-and-threat-intelligence-sharing
+
+  - name: ensure_threats_check_30_min
+    label: Ensure Threats Checks every 30 minutes
+    test: threats_update['recurring'] | has_config('every-30-mins')
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/overview.html
     severity: medium
-    # only run this test when update_schedule is actually configured
-    when: update_schedule_object is not none
+    cmd: validate
+
+  - name: ensure_av_check_hourly
+    label: Ensure AV update Checks every hour
+    test: av_update['recurring'] | has_config('hourly')
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/overview.html
+    severity: medium
+    cmd: validate
+
   - name: ensure_wildfire_check_1_min
     label: Ensure Wildfire Checks every 1 minute
-    cmd: validate
-    # test to see if the update-schedule does NOT have a child element with the name 'statistics-service'
-    test: |
-      (update_schedule_object['update-schedule']['wildfire'] is not none and
-      update_schedule_object['update-schedule']['wildfire']['recurring'] is not none and
-      update_schedule_object['update-schedule']['wildfire']['recurring']['every-min'] is not none)
-    # if the test is TRUE, then return this information
-    documentation_link: https://docs.paloaltonetworks.com/pan-os/8-0/pan-os-new-features/content-inspection-features/telemetry-and-threat-intelligence-sharing
+    test: wf_update['recurring'] | has_config('every-minute')
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/overview.html
     severity: medium
-    # only run this test when update_schedule is actually configured
-    when: update_schedule_object is not none
+    cmd: validate
+
+  - name: snmp_v3
+    label: Use SNMPv3
+    test: snmp_version | has_config('v3')
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/overview.html
+    severity: medium
+    cmd: validate
+
+  - name: dns_servers
+    label: configure primary and secondary dns servers
+    test: |
+      (
+      dns_servers | has_config('primary')
+      and dns_servers | has_config('secondary')
+      )
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/overview.html
+    severity: medium
+    cmd: validate
+
+  - name: ntp_servers
+    label: configure primary and secondary ntp servers
+    test: |
+      (
+      ntp_servers['ntp-servers']['primary-ntp-server'] | has_config('ntp-server-address')
+      and ntp_servers['ntp-servers']['secondary-ntp-server'] | has_config('ntp-server-address')
+      )
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/overview.html
+    severity: medium
+    cmd: validate
+
+  - name: login_banner
+    label: configure login banner
+    test: login_banner is not none
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/overview.html
+    severity: medium
+    cmd: validate
+
+  - name: timezone
+    label: set timezone to UTC
+    test: timezone | has_config('UTC')
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/overview.html
+    severity: medium
+    cmd: validate
+
+  - name: commit_lock
+    label: auto acquire commit lock enabled
+    test: device_setting['setting']['management']['auto-acquire-commit-lock'] == 'yes'
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/overview.html
+    severity: medium
+    cmd: validate
+
+  - name: strip_xff
+    label: strip x-forward-for should be enabled
+    test: device_setting['setting']['management']['ctd']['strip-x-fwd-for'] == 'yes'
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/overview.html
+    severity: medium
+    cmd: validate
+
+  - name: xff_userid
+    label: use xff in userid
+    test: device_setting['setting']['management']['ctd']['x-forwarded-for'] == 'yes'
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/overview.html
+    severity: medium
+    cmd: validate
+
+  - name: http_range
+    label: disable http partial response
+    test: device_setting['setting']['management']['ctd']['allow-http-range'] == 'no'
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/overview.html
+    severity: medium
+    cmd: validate
+
+  - name: tcp_bypass_exceed_queue
+    label: disable Forward segments exceeding TCP content inspection queue
+    test: device_setting['setting']['management']['ctd']['tcp-bypass-exceed-queue'] == 'no'
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/overview.html
+    severity: medium
+    cmd: validate
+
+  - name: udp_bypass_exceed_queue
+    label: disable Forward segments exceeding UDP content inspection queue
+    test: device_setting['setting']['management']['ctd']['udp-bypass-exceed-queue'] == 'no'
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/overview.html
+    severity: medium
+    cmd: validate
+
+  - name: app_bypass_exceed_queue
+    label: disable Forward segments exceeding TCP App-ID inspection queue
+    test: device_setting['setting']['application']['bypass-exceed-queue'] == 'no'
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/overview.html
+    severity: medium
+    cmd: validate
+
+  - name: log_high_dp_load
+    label: Enable Log on High DP Load should be enabled
+    test: device_setting['setting']['management']['enable-log-high-dp-load'] == 'yes'
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/overview.html
+    severity: medium
+    cmd: validate
+
+  - name: max_rows_csv_export
+    label: set max rows in log csv export to max
+    test: device_setting['setting']['management']['max-rows-in-csv-export'] == '1048576'
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/overview.html
+    severity: medium
+    cmd: validate
+
+  - name: api_key_lifetime
+    label: set api key lifetime
+    test: device_setting['setting']['management']['api']['key'] | has_config('lifetime')
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/overview.html
+    severity: medium
+    cmd: validate
+
+  # 2 admin lockout validations below for testing comparison
+  # first is to see if its configured - is that good enough assuming user has good config
+  # second looks for IronSkillet or better configuration
+  - name: admin_lockout_check
+    label: set admin lockout failed attempts and time
+    test: |
+      (
+      device_setting['setting']['management']['admin-lockout'] | has_config('failed-attempts')
+      and device_setting['setting']['management']['admin-lockout'] | has_config('lockout-time')
+      )
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/overview.html
+    severity: medium
+    cmd: validate
+
+  - name: admin_lockout_strict
+    label: set admin lockout IronSkillet or better failed attempts and time
+    test: |
+      (
+      device_setting['setting']['management']['admin-lockout']['failed-attempts'] | int <= 5
+      )
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/overview.html
+    severity: medium
+    cmd: validate
+
+  - name: idle_timeout
+    label: configure idle timeout
+    test: device_setting['setting']['management'] | has_config('idle-timeout')
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/overview.html
+    severity: medium
+    cmd: validate
+
+  - name: wf_filesize_limits
+    label: configure WF file size limits
+    test: device_setting | has_config('setting/wildfire/file-size-limit')
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/overview.html
+    severity: medium
+    cmd: validate
+
+  - name: wf_new_type_limits
+    when: device_setting['setting']['wildfire'] | has_config('file-size-limit')
+    label: check limits for new WF file types
+    test: |
+      (
+      wf_limit_archive == '10'
+      and wf_limit_linux == '2'
+      and wf_limit_script == '2000'
+      )
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/overview.html
+    severity: medium
+    cmd: validate
+
+  - name: wf_report_benign_grayware
+    label: enable reports for benign and grayware WF verdicts
+    test: |
+      (
+      wf_report['wildfire']['report-benign-file'] == 'yes'
+      and wf_report['wildfire']['report-grayware-file'] == 'yes'
+      )
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/overview.html
+    severity: medium
+    cmd: validate
+
+  - name: config_rematch
+    label: enable session rematch for new security policies
+    test: device_setting['setting']['config']['rematch'] == 'yes'
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/overview.html
+    severity: medium
+    cmd: validate
+
+  - name: enable_app_block_page
+    label: enable application block page
+    test: device_setting['setting']['application']['notify-user'] == 'yes'
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/overview.html
+    severity: medium
+    cmd: validate
+
+  - name: disable_log_suppression
+    label: disable log suppression
+    test: device_setting['setting']['logging']['log-suppression'] == 'no'
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/overview.html
+    severity: medium
+    cmd: validate
+
+  - name: prevent_tcp_evasions
+    label: configure TCP settings to prevent malware evasions
+    test: |
+      (
+      device_setting['setting']['tcp']['urgent-data'] == 'clear'
+      and device_setting['setting']['tcp']['drop-zero-flag'] == 'yes'
+      and device_setting['setting']['tcp']['bypass-exceed-oo-queue'] == 'no'
+      and device_setting['setting']['tcp']['check-timestamp-option'] == 'yes'
+      and device_setting['setting']['tcp']['strip-mptcp-option'] == 'yes'
+      )
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/overview.html
+    severity: medium
+    cmd: validate
+
+
+ # - name: av_profile_check
+ #   label: check for IronSkillet named AV profiles
+ #   test: |
+ #     (
+ #     av_profiles | has_attribute(name='Outbound-AV')
+ #     and av_profiles | has_attribute(name='Inbound-AV')
+ #     )
+ #   documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/overview.html
+ #   severity: medium
+ #   cmd: validate
