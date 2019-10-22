@@ -55,6 +55,10 @@ snippets:
         capture_object: devices/entry[@name='localhost.localdomain']/deviceconfig/setting/wildfire
       - name: av_profiles
         capture_object: devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/virus
+      - name: password_complexity
+        capture_object: mgt-config/password-complexity
+      - name: zone_protect_profile
+        capture_object: devices/entry[@name='localhost.localdomain']/network/profiles/zone-protection-profile
 
   - name: telemetry_fully_enabled
     label: enable all telemetry attributes
@@ -305,6 +309,31 @@ snippets:
     severity: medium
     cmd: validate
 
+  - name: password_complexity
+    label: configure strong password complexity
+    test: |
+      (
+      password_complexity['password-complexity']['enabled'] == 'yes'
+      and password_complexity['password-complexity']['minimum-length'] == '12'
+      and password_complexity['password-complexity']['minimum-uppercase-letters'] == '1'
+      and password_complexity['password-complexity']['minimum-lowercase-letters'] == '1'
+      and password_complexity['password-complexity']['minimum-numeric-letters'] == '1'
+      and password_complexity['password-complexity']['minimum-special-characters'] == '1'
+      and password_complexity['password-complexity']['block-username-inclusion'] == 'yes'
+      and password_complexity['password-complexity']['password-history-count'] == '24'
+      and password_complexity['password-complexity']['new-password-differs-by-characters'] == '3'
+      and password_complexity['password-complexity']['password-change']['expiration-period'] == '90'
+      )
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/overview.html
+    severity: medium
+    cmd: validate
+
+#  - name: zone_protect_profile
+#    label: create and use recommended zone protection
+#    test: zone_protect_profile | has_attribute(name='Recommended_Zone_Protection')
+#    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/overview.html
+#    severity: medium
+#    cmd: validate
 
  # - name: av_profile_check
  #   label: check for IronSkillet named AV profiles
