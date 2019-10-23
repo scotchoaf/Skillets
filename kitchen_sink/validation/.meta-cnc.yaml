@@ -41,8 +41,6 @@ snippets:
         capture_object: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system/login-banner
       - name: timezone
         capture_object: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system/timezone
-      - name: av_profiles
-        capture_object: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/virus
       - name: password_complexity
         capture_object: /config/mgt-config/password-complexity
       - name: zone_protect_profile
@@ -51,14 +49,6 @@ snippets:
   - name: zone_protect_profile
     label: create and use recommended zone protection
     test: zone_protect_profile | node_attribute_present('entry', 'name', 'Recommended_Zone_Protection')
-    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/overview.html
-
-  - name: av_profile_check
-    label: check for IronSkillet named AV profiles
-    test: |
-      (
-      av_profiles | node_attribute_present('entry', 'name', 'Outbound-AV')
-      )
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/overview.html
 
   - name: telemetry_fully_enabled
@@ -203,17 +193,16 @@ snippets:
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/overview.html
 
   # local granular parse to look at specific attributes in the tree - file type
-  # currently unable to have jinja checks against specific attribute elements; list complexity added if multiple attributes
   - name: wf_granular_parse
     cmd: parse
     variable: config
     outputs:
       - name: wf_limit_archive
-        capture_pattern: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting/wildfire/file-size-limit/entry[@name='archive']/size-limit
+        capture_object: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting/wildfire/file-size-limit/entry[@name='archive']
       - name: wf_limit_linux
-        capture_pattern: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting/wildfire/file-size-limit/entry[@name='linux']/size-limit
+        capture_object: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting/wildfire/file-size-limit/entry[@name='linux']
       - name: wf_limit_script
-        capture_pattern: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting/wildfire/file-size-limit/entry[@name='script']/size-limit
+        capture_object: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting/wildfire/file-size-limit/entry[@name='script']
       - name: wf_report
         capture_object: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/setting/wildfire
 
@@ -222,9 +211,9 @@ snippets:
     label: check limits for new WF file types
     test: |
       (
-      wf_limit_archive = '10'
-      and wf_limit_linux == '2'
-      and wf_limit_script == '2000'
+      wf_limit_archive | node_value('size-limit') == '10'
+      and wf_limit_linux | node_value('size-limit') == '2'
+      and wf_limit_script | node_value('size-limit') == '2000'
       )
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/overview.html
 
@@ -281,4 +270,105 @@ snippets:
       )
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/overview.html
 
+  # sectional grouping of all the profile checks: security, decrypt, logging
+  - name: profile_objects
+    cmd: parse
+    variable: config
+    outputs:
+      # capture all the object related profile information and match configured names
+      - name: av_profiles
+        capture_object: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/virus
+      - name: vp_profiles
+        capture_object: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/vulnerability
+      - name: as_profiles
+        capture_object: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/spyware
+      - name: url_profiles
+        capture_object: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/url-filtering
+      - name: fb_profiles
+        capture_object: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/file-blocking
+      - name: wf_profiles
+        capture_object: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/wildfire-analysis
+      - name: profile_group
+        capture_object: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profile-group
+      - name: profile_decryption
+        capture_object: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/profiles/decryption
+      - name: profile_logging
+        capture_object: /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/log-settings/profiles
 
+  - name: av_profile_check
+    label: check for IronSkillet named AV profiles
+    test: |
+      (
+      av_profiles | node_attribute_present('entry', 'name', 'Outbound-AV')
+      and av_profiles | node_attribute_present('entry', 'name', 'Inbound-AV')
+      )
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/overview.html
+
+  - name: vp_profile_check
+    label: check for IronSkillet named Vulnerability profiles
+    test: |
+      (
+      vp_profiles | node_attribute_present('entry', 'name', 'Outbound-VP')
+      and vp_profiles | node_attribute_present('entry', 'name', 'Inbound-VP')
+      )
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/overview.html
+
+  - name: as_profile_check
+    label: check for IronSkillet named anti-spyware profiles
+    test: |
+      (
+      as_profiles | node_attribute_present('entry', 'name', 'Outbound-AS')
+      and as_profiles | node_attribute_present('entry', 'name', 'Inbound-AS')
+      )
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/overview.html
+
+  - name: url_profile_check
+    label: check for IronSkillet named URL filtering profiles
+    test: |
+      (
+      url_profiles | node_attribute_present('entry', 'name', 'Outbound-URL')
+      )
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/overview.html
+
+  - name: fb_profile_check
+    label: check for IronSkillet named file-blocking profiles
+    test: |
+      (
+      fb_profiles | node_attribute_present('entry', 'name', 'Outbound-FB')
+      and fb_profiles | node_attribute_present('entry', 'name', 'Inbound-FB')
+      )
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/overview.html
+
+  - name: wf_profile_check
+    label: check for IronSkillet named Wildfire profiles
+    test: |
+      (
+      wf_profiles | node_attribute_present('entry', 'name', 'Outbound-WF')
+      and wf_profiles | node_attribute_present('entry', 'name', 'Inbound-WF')
+      )
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/overview.html
+
+  - name: profile_group_check
+    label: check for IronSkillet named profile groups
+    test: |
+      (
+      profile_group | node_attribute_present('entry', 'name', 'Outbound')
+      and profile_group | node_attribute_present('entry', 'name', 'default')
+      )
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/overview.html
+
+  - name: profile_decryption
+    label: check for IronSkillet recommended decryption profile
+    test: |
+      (
+      profile_decryption | node_attribute_present('entry', 'name', 'Recommended_Decryption_Profile')
+      )
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/overview.html
+
+  - name: profile_logging
+    label: check for IronSkillet default logging profile
+    test: |
+      (
+      profile_logging | node_attribute_present('entry', 'name', 'default')
+      )
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/overview.html
