@@ -52,20 +52,20 @@ snippets:
     label: enable all telemetry attributes
     test: |
       (
-      telemetry | node_value(‘application-reports’) == 'yes'
-      and telemetry | node_value(‘threat-prevention-reports’) == 'yes'
-      and telemetry | node_value(‘threat-prevention-pcap’) == 'yes'
-      and telemetry | node_value(‘passive-dns-monitoring’) == 'yes'
-      and telemetry | node_value(‘url-reports’) == 'yes'
-      and telemetry | node_value(‘health-performance-reports’) == 'yes'
-      and telemetry | node_value(‘passive-dns-monitoring’) == 'yes'
-      and telemetry | node_value(‘file-identification-reports’) == 'yes'
+      telemetry | node_value('application-reports') == 'yes'
+      and telemetry | node_value('threat-prevention-reports') == 'yes'
+      and telemetry | node_value('threat-prevention-pcap') == 'yes'
+      and telemetry | node_value('passive-dns-monitoring') == 'yes'
+      and telemetry | node_value('url-reports') == 'yes'
+      and telemetry | node_value('health-performance-reports') == 'yes'
+      and telemetry | node_value('passive-dns-monitoring') == 'yes'
+      and telemetry | node_value('file-identification-reports') == 'yes'
       )
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/overview.html
 
   - name: ensure_threats_check_30_min
     label: Ensure Threats Checks every 30 minutes
-    test: threats_update | node_present(‘recurring.every-30-mins')
+    test: threats_update | node_present('recurring.every-30-mins')
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/overview.html
 
   - name: ensure_av_check_hourly
