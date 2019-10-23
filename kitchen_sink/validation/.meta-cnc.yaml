@@ -26,13 +26,13 @@ snippets:
       - name: telemetry
         capture_object: devices/entry[@name='localhost.localdomain']/deviceconfig/system/update-schedule/statistics-service
       - name: threats_update
-        capture_object: devices/entry[@name='localhost.localdomain']/deviceconfig/system/update-schedule/threats/
+        capture_object: devices/entry[@name='localhost.localdomain']/deviceconfig/system/update-schedule/threats
       - name: wf_update
-        capture_object: devices/entry[@name='localhost.localdomain']/deviceconfig/system/update-schedule/wildfire/
+        capture_object: devices/entry[@name='localhost.localdomain']/deviceconfig/system/update-schedule/wildfire
       - name: av_update
-        capture_object: devices/entry[@name='localhost.localdomain']/deviceconfig/system/update-schedule/anti-virus/
+        capture_object: devices/entry[@name='localhost.localdomain']/deviceconfig/system/update-schedule/anti-virus
       - name: snmp_version
-        capture_object: devices/entry[@name='localhost.localdomain']/deviceconfig/system/snmp-setting/*/version/
+        capture_object: devices/entry[@name='localhost.localdomain']/deviceconfig/system/snmp-setting/*/version
       - name: dns_servers
         capture_object: devices/entry[@name='localhost.localdomain']/deviceconfig/system/dns-setting/servers
       - name: ntp_servers
@@ -110,8 +110,8 @@ snippets:
     label: configure primary and secondary dns servers
     test: |
       (
-      dns_servers | has_config('primary')
-      and dns_servers | has_config('secondary')
+      dns_servers | has_config('servers.primary')
+      and dns_servers | has_config('servers.secondary')
       )
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/overview.html
     severity: medium
