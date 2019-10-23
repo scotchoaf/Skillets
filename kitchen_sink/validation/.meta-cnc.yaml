@@ -48,6 +48,19 @@ snippets:
       - name: zone_protect_profile
         capture_object: /config/devices/entry[@name='localhost.localdomain']/network/profiles/zone-protection-profile
 
+  - name: zone_protect_profile
+    label: create and use recommended zone protection
+    test: zone_protect_profile | node_attribute_present('entry', 'name', 'Recommended_Zone_Protection')
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/overview.html
+
+  - name: av_profile_check
+    label: check for IronSkillet named AV profiles
+    test: |
+      (
+      av_profiles | node_attribute_present('entry', 'name', 'Outbound-AV')
+      )
+    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/overview.html
+
   - name: telemetry_fully_enabled
     label: enable all telemetry attributes
     test: |
@@ -209,7 +222,7 @@ snippets:
     label: check limits for new WF file types
     test: |
       (
-      wf_limit_archive == '10'
+      wf_limit_archive = '10'
       and wf_limit_linux == '2'
       and wf_limit_script == '2000'
       )
@@ -268,20 +281,4 @@ snippets:
       )
     documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/overview.html
 
-#  - name: zone_protect_profile
-#    label: create and use recommended zone protection
-#    test: zone_protect_profile | has_attribute(name='Recommended_Zone_Protection')
-#    documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/overview.html
-#    severity: medium
-#    cmd: validate
 
- # - name: av_profile_check
- #   label: check for IronSkillet named AV profiles
- #   test: |
- #     (
- #     av_profiles | has_attribute(name='Outbound-AV')
- #     and av_profiles | has_attribute(name='Inbound-AV')
- #     )
- #   documentation_link: https://iron-skillet.readthedocs.io/en/docs_master/overview.html
- #   severity: medium
- #   cmd: validate
